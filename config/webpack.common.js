@@ -31,13 +31,37 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: helpers.root('src', 'app'),
-        loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader?sourceMap' })
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          loader: 'css-loader',
+          options:{
+            sourceMap: true
+          }
+        })
       },
       {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
         loader: 'raw-loader'
-      }
+      },
+      
+      {
+        test: /\.(scss|sass)$/,
+        exclude: helpers.root('src', 'app'),
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          loader: ['css-loader','sass-loader'],
+          options:{
+            sourceMap: true
+          }
+        })
+      },
+      {
+        test: /\.(scss|sass)$/,
+        include: helpers.root('src', 'app'),
+        loader: 'raw-loader!sass-loader'
+      },
+
     ]
   },
 
