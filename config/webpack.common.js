@@ -50,7 +50,7 @@ module.exports = {
         exclude: helpers.root('src', 'app'),
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          loader: ['css-loader','sass-loader'],
+          loader: ['css-loader','resolve-url-loader', 'sass-loader?sourceMap'],
           options:{
             sourceMap: true
           }
@@ -59,9 +59,8 @@ module.exports = {
       {
         test: /\.(scss|sass)$/,
         include: helpers.root('src', 'app'),
-        loader: 'raw-loader!sass-loader'
+        loader: 'raw-loader!resolve-url-loader!sass-loader'
       },
-
     ]
   },
 
