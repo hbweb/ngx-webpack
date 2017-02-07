@@ -16,6 +16,37 @@ module.exports = webpackMerge(commonConfig, {
     chunkFilename: '[id].[hash].chunk.js'
   },
 
+  module: {
+
+      rules: [
+
+        /*
+         * Extract CSS files from .src/styles directory to external CSS file
+         */
+        {
+          test: /\.css$/,
+          use: ExtractTextPlugin.extract({
+            fallbackLoader: 'style-loader',
+            use: 'css-loader'
+          }),
+          include: helpers.root('src', 'style')
+        },
+
+        /*
+         * Extract and compile SCSS files from .src/styles directory to external CSS file
+         */
+        {
+          test: /\.scss$/,
+          use: ExtractTextPlugin.extract({
+            fallbackLoader: 'style-loader',
+            use: 'css-loader!sass-loader'
+          }),
+          include: helpers.root('src', 'style')
+        },
+
+      ]
+    },
+
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.UglifyJsPlugin({ // https://github.com/angular/angular/issues/10618

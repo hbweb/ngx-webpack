@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "description": "A webpack starter for Angular 2",
   "scripts": {
+    "live": "webpack --inline --progress --port 5000",
     "start": "webpack-dev-server --inline --progress --port 4000",
     "test": "karma start",
     "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail"
   },
-  "repository": "https://github.com/hbweb/ng2-webpack",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hbweb/ng2-webpack"
+  },
   "license": "MIT",
   "dependencies": {
     "@angular/common": "~2.4.0",
@@ -40,6 +44,7 @@
     "karma-webpack": "^2.0.1",
     "node-sass": "^4.5.0",
     "null-loader": "^0.1.1",
+    "to-string-loader": "^1.1.4",
     "phantomjs-prebuilt": "^2.1.7",
     "raw-loader": "^0.5.1",
     "resolve-url-loader": "^1.6.1",
