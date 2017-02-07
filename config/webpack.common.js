@@ -28,60 +28,38 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
         loader: 'file-loader?name=assets/[name].[hash].[ext]'
       },
-      // {
-      //   test: /\.css$/,
-      //   exclude: helpers.root('src', 'app'),
-      //   loader: ExtractTextPlugin.extract({
-      //     fallback: 'style-loader',
-      //     loader: 'css-loader',
-      //     options:{
-      //       sourceMap: true
-      //     }
-      //   })
-      // },
-      // {
-      //   test: /\.css$/,
-      //   include: helpers.root('src', 'app'),
-      //   loader: 'raw-loader'
-      // },
-
-      // {
-      //   test: /\.(scss|sass)$/,
-      //   exclude: helpers.root('src', 'app'),
-      //   loader: ExtractTextPlugin.extract({
-      //     fallback: 'style-loader',
-      //     loader: ['css-loader','resolve-url-loader', 'sass-loader'],
-      //     options:{
-      //       sourceMap: true
-      //     }
-      //   })
-      // },
-      // {
-      //   test: /\.(scss|sass)$/,
-      //   include: helpers.root('src', 'app'),
-      //   loader: 'raw-loader!resolve-url-loader!sass-loader'
-      // },
-
-      /*
-        * to string and css loader support for *.css files (from Angular components)
-        * Returns file content as string
-        *
-        */
       {
         test: /\.css$/,
-        use: ['to-string-loader', 'css-loader'],
-        exclude: helpers.root('src', 'style')
+        exclude: helpers.root('src', 'app'),
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          loader: 'css-loader',
+          options:{
+            sourceMap: true
+          }
+        })
+      },
+      {
+        test: /\.css$/,
+        include: helpers.root('src', 'app'),
+        loader: 'raw-loader'
       },
 
-      /*
-        * to string and sass loader support for *.scss files (from Angular components)
-        * Returns compiled css content as string
-        *
-        */
       {
-        test: /\.scss$/,
-        use: ['to-string-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap'],
-        exclude: helpers.root('src', 'style')
+        test: /\.(scss|sass)$/,
+        exclude: helpers.root('src', 'app'),
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          loader: ['css-loader','resolve-url-loader', 'sass-loader'],
+          options:{
+            sourceMap: true
+          }
+        })
+      },
+      {
+        test: /\.(scss|sass)$/,
+        include: helpers.root('src', 'app'),
+        loader: 'raw-loader!resolve-url-loader!sass-loader'
       },
     ]
   },

@@ -12,32 +12,6 @@ module.exports = webpackMerge(commonConfig, {
     chunkFilename: '[id].chunk.js'
   },
 
-  module: {
-    rules: [
-        /*
-         * css loader support for *.css files (styles directory only)
-         * Loads external css styles into the DOM, supports HMR
-         *
-         */
-        {
-          test: /\.css$/,
-          use: ['style-loader', 'css-loader'],
-          include: helpers.root('src', 'style')
-        },
-
-        /*
-         * sass loader support for *.scss files (styles directory only)
-         * Loads external sass styles into the DOM, supports HMR
-         *
-         */
-        {
-          test: /\.scss$/,
-          use: ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap'],
-          include: helpers.root('src', 'style')
-        }
-    ]
-  },
-
   plugins: [
     new ExtractTextPlugin('[name].css')
   ],
